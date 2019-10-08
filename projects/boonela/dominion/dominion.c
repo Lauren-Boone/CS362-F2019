@@ -749,14 +749,16 @@ int baronCard(int currentPlayer, int choice1, int choice2, int choice3, struct g
 				}
 				state->hand[currentPlayer][state->handCount[currentPlayer]] = -1;
 				state->handCount[currentPlayer]--;
-				card_not_discarded = 0;//Exit the loop
+//BUG HERE
+				//card_not_discarded = 0;//Exit the loop
 			}
 			else if (p > state->handCount[currentPlayer]) {
 				if (DEBUG) {
 					printf("No estate cards in your hand, invalid choice\n");
 					printf("Must gain an estate if there are any\n");
 				}
-				if (supplyCount(estate, state) > 0) {
+				//BUG HERE!
+				if (supplyCount(estate, state) < 0) {
 					gainCard(estate, state, 0, currentPlayer);
 
 					state->supplyCount[estate]--;//Decrement estates
