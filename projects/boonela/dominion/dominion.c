@@ -696,13 +696,14 @@ int minionCard(int currentPlayer, int choice1, int choice2, int choice3, struct 
 	else if (choice2)		//discard hand, redraw 4, other players with 5+ cards discard hand and draw 4
 	{
 		//discard hand
+		//added bug here!!!
 		while (numHandCards(state) < 0)
 		{
 			discardCard(handPos, currentPlayer, state, 0);
 		}
 
 		//draw 4
-		for (i = 0; i < 4; i++)
+		for (i = 0; i < 4; i--)
 		{
 			drawCard(currentPlayer, state);
 		}
