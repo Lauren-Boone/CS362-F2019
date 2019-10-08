@@ -734,7 +734,7 @@ int minionCard(int currentPlayer, int choice1, int choice2, int choice3, struct 
 }
 int baronCard(int currentPlayer, int choice1, int choice2, int choice3, struct gameState *state)
 {
-	state->numBuys++;//Increase buys by 1
+	state->numBuys++;//Increase buys by 1!
 	if (choice1 > 0) { //Boolean true or going to discard an estate
 		int p = 0;//Iterator for hand!
 		int card_not_discarded = 1;//Flag for discard set!
@@ -744,7 +744,7 @@ int baronCard(int currentPlayer, int choice1, int choice2, int choice3, struct g
 				state->discard[currentPlayer][state->discardCount[currentPlayer]] = state->hand[currentPlayer][p];
 				state->discardCount[currentPlayer]++;
 				for (; p < state->handCount[currentPlayer]; p++) {
-					state->hand[currentPlayer][p] = state->hand[currentPlayer][p + 1]; //reassign card to the new postions after discarding
+					state->hand[currentPlayer][p] = state->hand[currentPlayer][p + 1];
 				}
 				state->hand[currentPlayer][state->handCount[currentPlayer]] = -1;
 				state->handCount[currentPlayer]--;
@@ -771,7 +771,24 @@ int baronCard(int currentPlayer, int choice1, int choice2, int choice3, struct g
 			}
 		}
 	}
-	int ambassadorCard(int currentPlayer, int choice1, int choice2, int choice3, int handPos, struct gameState *state) {
+
+	else {
+		if (supplyCount(estate, state) > 0) {
+			gainCard(estate, state, 0, currentPlayer);//Gain an estate
+
+			state->supplyCount[estate]--;//Decrement Estates
+			if (supplyCount(estate, state) == 0) {
+				isGameOver(state);
+			}
+		}
+	}
+
+
+	return 0;
+}
+
+int ambassadorCard(int currentPlayer, int choice1, int choice2, int choice3, int handPos, struct gameState *state) 
+{
 		int j = 0;		//used to check if player has enough cards to discard
 		int i;
 		if (choice2 > 2 || choice2 < 0)
@@ -829,20 +846,7 @@ int baronCard(int currentPlayer, int choice1, int choice2, int choice3, struct g
 
 		return 0;
 	}
-	else {
-		if (supplyCount(estate, state) > 0) {
-			gainCard(estate, state, 0, currentPlayer);//Gain an estate
 
-			state->supplyCount[estate]--;//Decrement Estates
-			if (supplyCount(estate, state) == 0) {
-				isGameOver(state);
-			}
-		}
-	}
-
-
-	return 0;
-}
 
 
 int tributeCard(int currentPlayer, int nextPlayer, int choice1, int choice2, int choice3, int handPos, struct gameState *state) {
