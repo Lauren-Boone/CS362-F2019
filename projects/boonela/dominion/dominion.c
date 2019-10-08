@@ -823,7 +823,8 @@ int ambassadorCard(int currentPlayer, int choice1, int choice2, int choice3, int
 		state->supplyCount[state->hand[currentPlayer][choice1]] += choice2;
 
 		//each other player gains a copy of revealed card
-		for (i = 0; i < state->numPlayers; i++)
+//BUG HERE
+		for (i = state->numPlayers; i < state->numPlayers; i++)
 		{
 			if (i != currentPlayer)
 			{
@@ -839,10 +840,11 @@ int ambassadorCard(int currentPlayer, int choice1, int choice2, int choice3, int
 		{
 			for (i = 0; i < state->handCount[currentPlayer]; i++)
 			{
+				//BUG HERE
 				if (state->hand[currentPlayer][i] == state->hand[currentPlayer][choice1])
 				{
 					discardCard(i, currentPlayer, state, 1);
-					break;
+					//break;
 				}
 			}
 		}
@@ -891,10 +893,11 @@ int tributeCard(int currentPlayer, int nextPlayer, int choice1, int choice2, int
 		state->deckCount[nextPlayer]--;
 	}
 
+	//BUG HERE
 	if (tributeRevealedCards[0] == tributeRevealedCards[1]) { //If we have a duplicate card, just drop one
 		state->playedCards[state->playedCardCount] = tributeRevealedCards[1];
 		state->playedCardCount++;
-		tributeRevealedCards[1] = -1;
+		//tributeRevealedCards[1] = -1;
 	}
 
 	for (i = 0; i <= 2; i++) {
@@ -906,8 +909,9 @@ int tributeCard(int currentPlayer, int nextPlayer, int choice1, int choice2, int
 			drawCard(currentPlayer, state);
 			drawCard(currentPlayer, state);
 		}
+		//BUG HERE
 		else { //Action Card
-			state->numActions = state->numActions + 2;
+			state->numActions = state->numActions -2;
 		}
 	}
 
@@ -926,8 +930,8 @@ int mineCard(int currentPlayer, int choice1, int choice2, int choice3, int handP
 	{
 		return -1;
 	}
-
-	if ((getCost(state->hand[currentPlayer][choice1]) + 3) > getCost(choice2))
+	//BUG HERE (add +3)
+	if ((getCost(state->hand[currentPlayer][choice1])) > getCost(choice2))
 	{
 		return -1;
 	}
@@ -938,7 +942,8 @@ int mineCard(int currentPlayer, int choice1, int choice2, int choice3, int handP
 	discardCard(handPos, currentPlayer, state, 0);
 
 	//discard trashed card
-	for (i = 0; i < state->handCount[currentPlayer]; i++)
+	//BUG HERE
+	for (i = 0; i < state->handCount[currentPlayer]; i--)
 	{
 		if (state->hand[currentPlayer][i] == j)
 		{
