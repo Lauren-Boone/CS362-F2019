@@ -6,13 +6,23 @@
 char inputChar()
 {
     // TODO: rewrite this function
-    return ' ';
+    int randNum = (rand() %94) + 32;
+    return (char)randNum;
 }
 
 char *inputString()
 {
     // TODO: rewrite this function
-    return "";
+    char letters[6];
+	int i=0;
+	do{
+		letters[i] = (rand() %16)+101;
+	i++;
+	}while(i<5);
+	letters[5] = '\0';
+	char *lettersReturn = letters;	
+	
+    return lettersReturn;
 }
 
 void testme()
