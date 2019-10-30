@@ -5,6 +5,14 @@
 #include <math.h>
 #include <stdlib.h>
 
+
+int baronCard(int currentPlayer, int choice1, int choice2, int choice3, struct gameState *state);
+int ambassadorCard(int currentPlayer, int choice1, int choice2, int choice3, int handPos, struct gameState *state);
+
+
+
+
+
 int compare(const void* a, const void* b) {
     if (*(int*)a > *(int*)b)
         return 1;

@@ -93,6 +93,11 @@ int shuffle(int player, struct gameState *state);
 /* Assumes all cards are now in deck array (or hand/played):  discard is
  empty */
 
+
+int baronCard(int currentPlayer, int choice1, int choice2, int choice3, struct gameState *state);
+
+int ambassadorCard(int currentPlayer, int choice1, int choice2, int choice3, int handPos, struct gameState *state);
+
 int playCard(int handPos, int choice1, int choice2, int choice3,
              struct gameState *state);
 /* Play card with index handPos from current player's hand */
