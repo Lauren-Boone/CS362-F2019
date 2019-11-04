@@ -16,14 +16,19 @@ testDrawCard: testDrawCard.c dominion.o rngs.o
 interface.o: interface.h interface.c
 	gcc -c interface.c -g  $(CFLAGS)
 
-unittestresults: unitTest1.c unitTest2.c  dominion.o rngs.o
-	echo "unitTest1:" >> unittestresults.out
+unittestresults: unitTest1.c unitTest2.c unitTest3.c  dominion.o rngs.o
+	echo "unitTest1:" > unittestresults.out
 	gcc -o test1 unitTest1.c dominion.o rngs.o $(CFLAGS)
-	./test1 &> unittestresults.out
-	gcov dominion.c -b -f  >> unittestresults.out
-	cat dominion.c.gcov >> unittestresults.out
+	./test1 >> unittestresults.out
+#	gcov dominion.c -b -f  >> unittestresults.out
 	gcc -o test2 unitTest2.c dominion.o rngs.o $(CFLAGS)
-	./test2 &> unittestresults.out
+	./test2 >> unittestresults.out
+	gcc -o test3 unitTest3.c dominion.o rngs.o $(CFLAGS)
+	./test3 >>unittestresults.out
+	gcc -o test4 unitTest4.c dominion.o rngs.o $(CFLAGS)
+	./test4 >>unittestresults.out
+	gcc -o test5 unitTest5.c dominion.o rngs.o $(CFLAGS)
+	./test5 >>unittestresults.out
 	gcov dominion.c -b -f >> unittestresults.out
 	cat dominion.c.gcov >> unittestresults.out
 	

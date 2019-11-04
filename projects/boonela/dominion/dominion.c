@@ -9,7 +9,7 @@
 int baronCard(int currentPlayer, int choice1, int choice2, int choice3, struct gameState *state);
 int ambassadorCard(int currentPlayer, int choice1, int choice2, int choice3, int handPos, struct gameState *state);
 
-
+int minionCard(int currentPlayer, int choice1, int choice2, int choice3, struct gameState *state, int handPos);
 
 
 
@@ -695,7 +695,7 @@ int minionCard(int currentPlayer, int choice1, int choice2, int choice3, struct 
 	int i;
 	int j;
 	//discard card from hand
-	discardCard(handPos, currentPlayer, state, 0);
+	discardCard(handPos, currentPlayer, state,1 );
 
 	if (choice1)
 	{
@@ -705,13 +705,17 @@ int minionCard(int currentPlayer, int choice1, int choice2, int choice3, struct 
 	{
 		//discard hand
 		//added bug here!!!
+		//
+		i=0;
 		while (numHandCards(state) < 0)
 		{
-			discardCard(handPos, currentPlayer, state, 0);
+			discardCard(i, currentPlayer, state, 0);
+			++i;
 		}
 
 		//draw 4
-		for (i = 0; i < 4; i--)
+		//Had to undo this bug it was causing a segfault
+		for (i = 0; i < 4; i++)
 		{
 			drawCard(currentPlayer, state);
 		}
@@ -814,7 +818,7 @@ int ambassadorCard(int currentPlayer, int choice1, int choice2, int choice3, int
 
 		for (i = 0; i < state->handCount[currentPlayer]; i++)
 		{
-			if (i != handPos && i == state->hand[currentPlayer][choice1] && i != choice1)
+			if (i != handPos && state->hand[currentPlayer][i] == state->hand[currentPlayer][choice1] && i != choice1)
 			{
 				j++;
 			}
@@ -828,7 +832,7 @@ int ambassadorCard(int currentPlayer, int choice1, int choice2, int choice3, int
 			printf("Player %d reveals card number: %d\n", currentPlayer, state->hand[currentPlayer][choice1]);
 
 		//increase supply count for choosen card by amount being discarded
-		state->supplyCount[state->hand[currentPlayer][choice1]] += choice2;
+		state->supplyCount[choice1] += choice2;
 
 		//each other player gains a copy of revealed card
 //BUG HERE
@@ -841,12 +845,12 @@ int ambassadorCard(int currentPlayer, int choice1, int choice2, int choice3, int
 		}
 
 		//discard played card from hand
-		discardCard(handPos, currentPlayer, state, 0);
+		//discardCard(handPos, currentPlayer, state, 0);
 
 		//trash copies of cards returned to supply
 		for (j = 0; j < choice2; j++)
 		{
-			for (i = 0; i < state->handCount[currentPlayer]; i++)
+			for (i = 0; i< state->handCount[currentPlayer]; i++)
 			{
 				//BUG HERE
 				if (state->hand[currentPlayer][i] == state->hand[currentPlayer][choice1])
@@ -928,11 +932,11 @@ int tributeCard(int currentPlayer, int nextPlayer, int choice1, int choice2, int
 int mineCard(int currentPlayer, int choice1, int choice2, int choice3, int handPos, struct gameState *state) {
 	int j, i;
 	j = state->hand[currentPlayer][choice1];  //store card we will trash
-
-	if (state->hand[currentPlayer][choice1] < copper || state->hand[currentPlayer][choice1] > gold)
-	{
-		return -1;
-	}
+//	j= choice1;
+//	if (state->hand[currentPlayer][choice1] < copper || state->hand[currentPlayer][choice1] > gold)
+//	{
+//		return -1;
+//	}
 
 	if (choice2 > treasure_map || choice2 < curse)
 	{
