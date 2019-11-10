@@ -14,6 +14,7 @@ int main(){
 	int numPlayers=2;
 	struct gameState G;
 	int i, j, handpos =0, coins, handCount;
+	int pass=0, fail =0;
 	int k[10] = {baron, baron, sea_hag, tribute, smithy, mine, village, embargo, ambassador, great_hall};
 	int cards[10];
 	srand(time(NULL));
@@ -37,20 +38,26 @@ int main(){
 		//G.deckCount[0] = deck - handSize;
 		baronCard(0, i, 0, 0, &G);
 		if(G.coins != (coins + 4)){
-			printf("Fail - to many coins gained\n");
+		fail++;
+		//	printf("Fail - to many coins gained\n");
 		}
 		else if (G.coins == (coins +4)){
-			printf("Pass - four coins gained\n");
+			pass++;
+		//	printf("Pass - four coins gained\n");
 		}
 		if(G.handCount[0] != (handCount+1)){
-			printf("Fail - did not get estate\n");
+			fail++;
+	//		printf("Fail - did not get estate\n");
 		}
 		else if(G.handCount[0] == (handCount+1)){
-			printf("Pass - gained estate\n");
+				pass++;	
+	//	printf("Pass - gained estate\n");
 		}
 
 		//G.supplyCount[1] = -1;
 	
 	}
+printf("passed: %d tests\n", pass);
+printf("failed: %d tests\n", fail);
 return 0;
 }

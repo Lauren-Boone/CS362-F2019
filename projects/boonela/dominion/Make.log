@@ -5,12 +5,18 @@ gcc -c interface.c -g  -Wall -fpic -coverage -lm -std=c99
 gcc -o player player.c -g  dominion.o rngs.o interface.o -Wall -fpic -coverage -lm -std=c99
 gcc -o randomtest1 randomtestcard1.c dominion.o rngs.o -Wall -fpic -coverage -lm -std=c99
 randomtestcard1.c: In function ‘main’:
-randomtestcard1.c:18:6: warning: unused variable ‘cards’ [-Wunused-variable]
+randomtestcard1.c:19:6: warning: unused variable ‘cards’ [-Wunused-variable]
   int cards[10];
       ^
 randomtestcard1.c:16:12: warning: unused variable ‘handpos’ [-Wunused-variable]
   int i, j, handpos =0, coins, handCount;
             ^
 ./randomtest1 >> unittestresults.out
+gcc -o randomtest2 randomtestcard2.c dominion.o rngs.o -Wall -fpic -coverage -lm -std=c99
+randomtestcard2.c: In function ‘main’:
+randomtestcard2.c:35:3: warning: implicit declaration of function ‘minionCard’ [-Wimplicit-function-declaration]
+   minionCard(0, choice1, choice2, 0, &G,0);
+   ^
+./randomtest2 >> unittestresults.out
 gcov dominion.c -b -f >> unittestresults.out
 cat dominion.c.gcov >> unittestresults.out
