@@ -32,11 +32,13 @@ unittestresults: unitTest1.c unitTest2.c unitTest3.c  dominion.o rngs.o
 	gcov dominion.c -b -f >> unittestresults.out
 	cat dominion.c.gcov >> unittestresults.out
 	
-randomtestresults: randomtestcard1.c randomtestcard2.c dominion.o rngs.o
+randomtestresults: randomtestcard1.c randomtestcard2.c randomtestcard3.c dominion.o rngs.o
 	gcc -o randomtest1 randomtestcard1.c dominion.o rngs.o $(CFLAGS)
 	./randomtest1 >> unittestresults.out
 	gcc -o randomtest2 randomtestcard2.c dominion.o rngs.o $(CFLAGS)
 	./randomtest2 >> unittestresults.out
+	gcc -o randomtest3  randomtestcard3.c -g dominion.o rngs.o $(CFLAGS)
+	./randomtest3 >> unittestresults.out
 	gcov dominion.c -b -f >> unittestresults.out
 	cat dominion.c.gcov >> unittestresults.out
 
