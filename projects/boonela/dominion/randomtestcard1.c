@@ -18,6 +18,8 @@ int main(){
 	int k[10] = {baron, baron, sea_hag, tribute, smithy, mine, village, embargo, ambassador, great_hall};
 	int cards[10];
 	srand(time(NULL));
+	clock_t time;
+	time=clock();
 	printf("Testing Baron Card\n");
 	for(i =0; i < 1000; i++){
 		initializeGame(numPlayers, k, seed, &G);
@@ -57,6 +59,9 @@ int main(){
 		//G.supplyCount[1] = -1;
 	
 	}
+	time=clock() -time;
+	double time_take = ((double)time)/CLOCKS_PER_SEC;
+printf("This program took %f seconds\n", time_take);
 printf("passed: %d tests\n", pass);
 printf("failed: %d tests\n", fail);
 return 0;
