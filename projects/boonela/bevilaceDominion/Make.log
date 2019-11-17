@@ -34,21 +34,21 @@ randomtestcard1.c:19:6: warning: unused variable ‘cards’ [-Wunused-variable]
 randomtestcard1.c:16:12: warning: unused variable ‘handpos’ [-Wunused-variable]
   int i, j, handpos =0, coins, handCount;
             ^
-./randomtest1 >> unittestresults.out
+./randomtest1 >> randomtestresults.out
 gcc -o randomtest2 randomtestcard2.c dominion.o rngs.o -Wall -fpic -coverage -lm -std=c99
 randomtestcard2.c: In function ‘main’:
 randomtestcard2.c:35:3: warning: implicit declaration of function ‘playMinion’ [-Wimplicit-function-declaration]
    playMinion(&G,0, choice1, choice2, 0);
    ^
-./randomtest2 >> unittestresults.out
+./randomtest2 >> randomtestresults.out
 gcc -o randomtest3  randomtestcard3.c -g dominion.o rngs.o -Wall -fpic -coverage -lm -std=c99
 randomtestcard3.c: In function ‘main’:
 randomtestcard3.c:32:3: warning: implicit declaration of function ‘playTribute’ [-Wimplicit-function-declaration]
    playTribute(&G,0,1, 0);
    ^
-./randomtest3 >> unittestresults.out
-gcov dominion.c -b -f >> unittestresults.out
-cat dominion.c.gcov >> unittestresults.out
+./randomtest3 >> randomtestresults.out
+gcov dominion.c -b -f >> randomtestresults.out
+cat dominion.c.gcov >> randomtestresults.out
 echo "unitTest1:" > unittestresults.out
 gcc -o test1 unitTest1.c dominion.o rngs.o -Wall -fpic -coverage -lm -std=c99
 unitTest1.c: In function ‘main’:
