@@ -1,0 +1,4 @@
+gcc -o unitTest1 unitTest1.c -g dominion.o rngs.o -Wall -fpic -coverage -lm -std=c99
+./unitTest1 >> unittestresults.out
+/bin/sh: line 1:  5310 Segmentation fault      (core dumped) ./unitTest1 >> unittestresults.out
+make: *** [unittestresults] Error 139
