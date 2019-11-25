@@ -19,8 +19,8 @@ initializeGame(numPlayer, k, seed, &G);
 int count1=G.handCount[1];
 int count2=G.handCount[2];
 int current=G.handCount[0];
-printf("Testing Tribute card for correctly finding cards in player's hand\n");
-cardEffect(tribute, choice1, choice2, 0, &G, 0,0);
+printf("Testing Ambassador card for correctly finding cards in player's hand\n");
+cardEffect(ambassador, choice1, choice2, 0, &G, 0,0);
 
 if(G.handCount[1]==count1){
 	printf("	Failed: Opponent 1 did not recieve card\n");

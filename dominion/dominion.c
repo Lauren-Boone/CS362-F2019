@@ -1069,6 +1069,9 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
         }
 
         for (i = 0; i <= 2; i ++) {
+	    //if(tributeRevealedCards[i] == -1){
+	//	break;
+	//	}
             if (tributeRevealedCards[i] == copper || tributeRevealedCards[i] == silver || tributeRevealedCards[i] == gold) { //Treasure cards
                 state->coins += 2;
             }
@@ -1099,7 +1102,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 
         for (i = 0; i < state->handCount[currentPlayer]; i++)
         {
-            if (i != handPos && i == state->hand[currentPlayer][choice1] && i != choice1)
+            if (i != handPos && i==state->hand[currentPlayer][choice1] && i != choice1)
             {
                 j++;
             }
