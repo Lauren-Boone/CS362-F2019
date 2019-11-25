@@ -11,7 +11,7 @@ unitTest1.c:20:5: warning: unused variable ‘j’ [-Wunused-variable]
 ./unitTest1 >> unittestresults.out
 gcc -o unitTest2 unitTest2.c -g dominion.o rngs.o -Wall -fpic -coverage -lm -std=c99
 unitTest2.c: In function ‘main’:
-unitTest2.c:21:5: warning: unused variable ‘current’ [-Wunused-variable]
+unitTest2.c:29:5: warning: unused variable ‘current’ [-Wunused-variable]
  int current=G.handCount[0];
      ^
 unitTest2.c:13:5: warning: unused variable ‘maxHandCount’ [-Wunused-variable]
