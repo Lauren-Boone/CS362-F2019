@@ -1105,9 +1105,9 @@
     #####: 1100:            return -1;
         -: 1101:        }
         -: 1102:
-        1: 1103:        for (i = 0; i < state->handCount[currentPlayer]; i++)
+        6: 1103:        for (i = 0; i < state->handCount[currentPlayer]; i++)
         -: 1104:        {
-    #####: 1105:            if (i != handPos && i==state->hand[currentPlayer][choice1] && i != choice1)
+        5: 1105:            if (i != handPos && i==state->hand[currentPlayer][choice1] && i != choice1)
         -: 1106:            {
     #####: 1107:                j++;
         -: 1108:            }
