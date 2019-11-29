@@ -16,11 +16,27 @@ testDrawCard: testDrawCard.c dominion.o rngs.o
 interface.o: interface.h interface.c
 	gcc -c interface.c -g  $(CFLAGS)
 
-unittestresults: unitTest1.c unitTest2.c dominion.o rngs.o
-	gcc -o unitTest1 unitTest1.c -g dominion.o rngs.o $(CFLAGS)
-	./unitTest1 >> unittestresults.out
-	gcc -o unitTest2 unitTest2.c -g dominion.o rngs.o $(CFLAGS)
-	./unitTest2 >> unittestresults.out
+unittestresults: finalunittest01.c finalunittest02.c finalunittest03.c finalunittest04.c finalunittest05.c finalunittest06.c finalunittest07.c finalunittest08.c finalunittest08.c finalunittest09.c finalunittest10.c dominion.o rngs.o
+	gcc -o finalunittest01 finalunittest01.c -g dominion.o rngs.o $(CFLAGS)
+	gcc -o finalunittest02 finalunittest02.c -g dominion.o rngs.o $(CFLAGS)
+	gcc -o finalunittest03 finalunittest03.c -g dominion.o rngs.o $(CFLAGS)
+	gcc -o finalunittest04 finalunittest04.c -g dominion.o rngs.o $(CFLAGS)
+	gcc -o finalunittest05 finalunittest05.c -g dominion.o rngs.o $(CFLAGS)
+	gcc -o finalunittest06 finalunittest06.c -g dominion.o rngs.o $(CFLAGS)
+	gcc -o finalunittest07 finalunittest07.c -g dominion.o rngs.o $(CFLAGS)
+	gcc -o finalunittest08 finalunittest08.c -g dominion.o rngs.o $(CFLAGS)
+	gcc -o finalunittest09 finalunittest09.c -g dominion.o rngs.o $(CFLAGS)
+	gcc -o finalunittest10 finalunittest10.c -g dominion.o rngs.o $(CFLAGS)
+	./finalunittest01 >> unittestresults.out
+	./finalunittest02 >> unittestresults.out
+	./finalunittest03 >> unittestresults.out
+	./finalunittest04 >> unittestresults.out
+	./finalunittest05 >> unittestresults.out
+	./finalunittest06 >> unittestresults.out
+	./finalunittest07 >> unittestresults.out
+	./finalunittest08 >> unittestresults.out
+	./finalunittest09 >> unittestresults.out
+	./finalunittest10 >> unittestresults.out
 	gcov dominion.c >> unittestresults.out
 	cat dominion.c.gcov >> unittestresults.out 
 
